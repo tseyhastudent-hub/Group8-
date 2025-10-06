@@ -1,18 +1,9 @@
 <!DOCTYPE html>
-<!--
-	NOTES:
-	1. All tokens are represented by '$' sign in the template.
-	2. You can write your code only wherever mentioned.
-	3. All occurrences of existing tokens will be replaced by their appropriate values.
-	4. Blank lines will be removed automatically.
-	5. Remove unnecessary comments before creating your template.
--->
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="authoring-tool" content="Adobe_Animate_CC">
 <title>UI</title>
-<!-- write your code here -->
 <style>
   #animation_container {
 	position:absolute;
@@ -22,7 +13,8 @@
   }
 </style>
 <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-<script src="UI.js?1759389173461"></script>
+<!-- This is the UI.js file you provided -->
+<script src="UI.js"></script>
 <script>
 var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
 function init() {
@@ -42,7 +34,6 @@ function handleFileLoad(evt, comp) {
 	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
 }
 function handleComplete(evt,comp) {
-	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
 	var lib=comp.getLibrary();
 	var ss=comp.getSpriteSheet();
 	var queue = evt.target;
@@ -53,35 +44,30 @@ function handleComplete(evt,comp) {
 	exportRoot = new lib.UI();
 	stage = new lib.Stage(canvas);
 	stage.enableMouseOver();	
-	
-	// --- Code to add link to the Learn button ---
-	// NOTE: Replace 'Learn' with the instance name of your button from the Adobe Animate project if it is different.
-	if (exportRoot.Learn) {
-		exportRoot.Learn.addEventListener("click", function() {
-			window.location.href = "Learn.html";
-		});
-	}
-	// --- End of added code ---
-
-	//Registers the "tick" event listener.
 	fnStartAnimation = function() {
 		stage.addChild(exportRoot);
 		createjs.Ticker.framerate = lib.properties.fps;
 		createjs.Ticker.addEventListener("tick", stage);
 	}	    
-	//Code to support hidpi screens and responsive scaling.
 	AdobeAn.makeResponsive(true,'both',false,1,[canvas,anim_container,dom_overlay_container]);	
 	AdobeAn.compositionLoaded(lib.properties.id);
+	
+	// --- START of button linking code ---
+	// VERY IMPORTANT: Replace 'learn_btn' below with the actual instance name of your "Learn" button from Adobe Animate.
+	// Check for typos and make sure the case is an exact match.
+	this.exportRoot.learn_btn.addEventListener("click", function() {
+		window.location.href = "Learn.html";
+	});
+	// --- END of button linking code ---
+
 	fnStartAnimation();
 }
 </script>
-<!-- write your code here -->
 </head>
 <body onload="init();" style="margin:0px;">
 	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:1280px; height:720px">
 		<canvas id="canvas" width="1280" height="720" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
 		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1280px; height:720px; position: absolute; left: 0px; top: 0px; display: block;">
-
 		</div>
 	</div>
 </body>
