@@ -53,6 +53,16 @@ function handleComplete(evt,comp) {
 	exportRoot = new lib.UI();
 	stage = new lib.Stage(canvas);
 	stage.enableMouseOver();	
+	
+	// --- Code to add link to the Learn button ---
+	// NOTE: Replace 'Learn' with the instance name of your button from the Adobe Animate project if it is different.
+	if (exportRoot.Learn) {
+		exportRoot.Learn.addEventListener("click", function() {
+			window.location.href = "Learn.html";
+		});
+	}
+	// --- End of added code ---
+
 	//Registers the "tick" event listener.
 	fnStartAnimation = function() {
 		stage.addChild(exportRoot);
@@ -71,6 +81,7 @@ function handleComplete(evt,comp) {
 	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:1280px; height:720px">
 		<canvas id="canvas" width="1280" height="720" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
 		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1280px; height:720px; position: absolute; left: 0px; top: 0px; display: block;">
+
 		</div>
 	</div>
 </body>
